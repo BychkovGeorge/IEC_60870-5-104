@@ -1,0 +1,14 @@
+alert tcp any any <> any any (msg: "TEST any")
+alert tcp any any <> any any (msg: "Cause = Act"; content: "|06|"; offset: 52; depth: 53; rawbytes;)
+alert tcp any any <> any any (msg: "Detect single command"; content "|01|"; offset: 51, depth: 52; rawbytes;)
+alert tcp any any <> any any (msg: "START"; content: "STARTDT";) //Можно позволить подписи проверять всю полезную нагрузку на соответствие с контентом или позволить ей проверять определенные части полезной нагрузки.
+alert tcp any any <> any any (msg: "Working"; content: "TESTFR";)
+alert tcp any any <> any any (msg: "type S"; content: "|01|", offset: 46; depth: 47; rawbytes;)
+alert tcp any any <> any any (msg: "type id": content: "|01|", offset: 50; depth: 51; rawbytes;)
+alert tcp any any <> any any (msg: "strange command"; content: "command";)
+alert tcp any any <> any any (msg: "valuev"; content: "|d0 05|"; offset: 59; depth: 61; rawbytes;)
+
+
+
+
+
